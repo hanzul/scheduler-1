@@ -8,7 +8,7 @@ var dateToday = moment().format(`ddd, ll`);
 $("#currentDay").append(dateToday);
 
 //audit current time
-var auditTask = function() {
+var auditTask = function () {
     for (let i = 0; i < 24; i++) {
         const $div = $("div#" + i);
         const currentHour = moment().format("H");
@@ -16,19 +16,19 @@ var auditTask = function() {
 
         if (i > currentHour) {
             $($div).siblings("textarea")
-            .addClass("future")
-            .removeClass("description");
+                .addClass("future")
+                .removeClass("description");
         }
         if (i < currentHour) {
             $($div).siblings("textarea")
-            .addClass("past")
-            .removeClass("description");
+                .addClass("past")
+                .removeClass("description");
         }
 
         if (i == currentHour) {
             $($div).siblings("textarea")
-            .addClass("present")
-            .removeClass("description");
+                .addClass("present")
+                .removeClass("description");
         }
         else {
         }
@@ -41,10 +41,11 @@ setInterval(function () {
     auditTask();
 }, 1800000);
 
-var buttonClicked =$(event.target).attr('data-name');
+
+var buttonClicked = $(event.target).attr('data-name');
 var taskTime = buttonClicked;
 var taskDescription = $("#text-area-" + buttonClicked).val().trim();
-console.log(taskTime)
+console.log(taskTime);
 console.log(taskDescription);
 
 var task = {
@@ -67,7 +68,7 @@ $(".saveBtn").click(function (event) {
 //helpers functions
 
 function saveTasks(task) {
-    var tasks =JSON.parse(localStorage.getItem("tasks"));
+    var tasks = JSON.parse(localStorage.getItem("tasks"));
     if (!tasks) {
         tasks = [];
     }
@@ -76,6 +77,5 @@ function saveTasks(task) {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    saveTasks();
-
 }
+saveTasks();
